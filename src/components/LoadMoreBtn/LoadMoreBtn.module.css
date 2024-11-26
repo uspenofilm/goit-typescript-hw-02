@@ -1,0 +1,17 @@
+.loadMoreBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: lavenderblush;
+  border: 1px solid seagreen;
+  color: seagreen;
+}
+
+.loadMoreBtn:focus {
+  outline: none;
+}

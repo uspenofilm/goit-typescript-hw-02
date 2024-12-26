@@ -1,6 +1,15 @@
 import css from "./ImageCard.module.css";
+import { Photos } from "../App/App.types";
 
-export default function ImageCard({ image: { urls, description }, onClick }) {
+type Props = {
+  image: Photos;
+  onClick: (firstArg: string, secondArg: string) => void;
+};
+
+export default function ImageCard({
+  image: { urls, description },
+  onClick,
+}: Props) {
   return (
     <div className={css.imageCardContainer}>
       <img

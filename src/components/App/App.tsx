@@ -4,23 +4,24 @@ import ImageModal from "../ImageModal/ImageModal";
 import Loader from "../Loader/Loader";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import SearchBar from "../SearchBar/SearchBar";
-import { getPhotos } from "../../components/axiosRequest";
+import { getPhotos } from "../axiosRequest";
 import { useState, useEffect } from "react";
 import css from "./App.module.css";
+import { Photos } from "./App.types";
 
 export default function App() {
   const [query, setQuery] = useState("");
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState<Array<Photos>>([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
   const [isEmpty, setIsEmpty] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [modalUrl, setModalUrl] = useState("");
   const [modalAlt, setModalAlt] = useState("");
 
-  const onHandleSubmit = (searchQuery) => {
+  const onHandleSubmit = (searchQuery: string) => {
     setQuery(searchQuery);
     setPhotos([]);
     setPage(1);
@@ -42,7 +43,7 @@ export default function App() {
         }
         setPhotos((prevResults) => [...prevResults, ...results]);
         setIsVisible(page < totalPages);
-      } catch (error) {
+      } catch (error: any) {
         setError(error);
       } finally {
         setIsLoading(false);
@@ -51,7 +52,7 @@ export default function App() {
     fetchData();
   }, [page, query]);
 
-  function openModal(url, alt) {
+  function openModal(url: string, alt: string) {
     setIsOpen(true);
     setModalUrl(url);
     setModalAlt(alt);
@@ -59,8 +60,8 @@ export default function App() {
 
   function closeModal() {
     setIsOpen(false);
-    setModalAlt();
-    setModalUrl();
+    setModalAlt("");
+    setModalUrl("");
   }
 
   const onLoadMore = () => {

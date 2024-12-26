@@ -3,14 +3,18 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 
-export default function SearchBar({ onSubmit }) {
+type Props = {
+  onSubmit: (firstArg: string) => void;
+};
+
+export default function SearchBar({ onSubmit }: Props) {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!searchQuery.trim()) {
       return toast.error("Cannot be empty");

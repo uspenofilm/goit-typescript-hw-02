@@ -16,7 +16,14 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-export default function ImageModal({ onClose, isOpen, url, alt }) {
+type Props = {
+  onClose: () => void;
+  isOpen: boolean;
+  url: string;
+  alt: string;
+};
+
+export default function ImageModal({ onClose, isOpen, url, alt }: Props) {
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
       <img src={url} alt={alt} />
